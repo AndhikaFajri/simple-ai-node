@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Node.js + IBM Granite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Hasil dari AI IBM Granite</h1>
+    <div id="result">Memuat...</div>
+
+    <script>
+        fetch("/api/ai")
+            .then(res => res.json())
+            .then(data => {
+                if (data.output) {
+                    document.getElementById("result").innerText = data.output;
+                } else {
+                    document.getElementById("result").innerText = "Tidak ada output dari AI.";
+                }
+            })
+            .catch(err => {
+                document.getElementById("result").innerText = "Gagal memanggil API.";
+            });
+    </script>
+</body>
+
+</html>
